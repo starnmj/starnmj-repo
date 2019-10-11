@@ -440,38 +440,38 @@ def write_xsf(file_name, atoms):
 
     # Molecular structure...
     if atoms.get_cell() is None:
-        xsf.write('ATOMS\n')
+        xsf.write(' ATOMS\n')
         i = 0
         for atom in atoms._atoms:
             x,y,z = atom.get_position()
             info = atomic_number(atom.get_symbol()), x, y, z
-            xsf.write('%2d %12.6f %12.6f %12.6f\n' % info)
+            xsf.write(' %2d %12.6f %12.6f %12.6f\n' % info)
             i += 1
         xsf.close()
         
     else:
-        xsf.write('CRYSTAL\n')
+        xsf.write(' CRYSTAL\n')
         # Primitive lattice vectors (in Angstroms)
-        xsf.write('PRIMVEC\n')
+        xsf.write(' PRIMVEC\n')
         va,vb,vc = atoms.get_cell()[0],atoms.get_cell()[1],atoms.get_cell()[2] 
         #va, vb, vc = convert_abc2xyz(cell[0], cell[1], cell[2], 
         #                             cell[3], cell[4], cell[5])
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(va))
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(vb))
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(vc))
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(va))
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(vb))
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(vc))
         # Conventional lattice vectors (in Angstroms)        
-        xsf.write('CONVVEC\n')
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(va))
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(vb))
-        xsf.write('%12.6f %12.6f %12.6f\n' % tuple(vc))
+        xsf.write(' CONVVEC\n')
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(va))
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(vb))
+        xsf.write(' %12.6f %12.6f %12.6f\n' % tuple(vc))
         # Atomic coord. in a primitive unit cell (in Angstroms)
-        xsf.write('PRIMCOORD\n')
-        xsf.write('%s 1\n' % str(len(atoms)))
+        xsf.write(' PRIMCOORD\n')
+        xsf.write(' %-7d1\n' % len(atoms))
         i = 0
         for atom in atoms._atoms:
             x,y,z = atom.get_position()
             info = atomic_number(atom.get_symbol()), x, y, z
-            xsf.write('%2d %12.6f %12.6f %12.6f\n' % info)
+            xsf.write(' %2d %12.6f %12.6f %12.6f\n' % info)
             i += 1
         xsf.close()
 
