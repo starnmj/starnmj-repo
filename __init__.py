@@ -30,7 +30,6 @@ from . import vasp
 #
 
 from . import carbonlab
-from . import asesurf2xxyz
 from . import surflab
 
 #
